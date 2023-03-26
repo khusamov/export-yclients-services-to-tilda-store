@@ -2,6 +2,15 @@
   "name": "export-yclients-services-to-tilda-store",
   "version": "0.1.0",
   "private": true,
+  "description": "Выгрузка услуг из сервиса yclients.com в таблицу Товары сервиса tilda.cc с пользовательскими преобразованиями",
+  "repository": {
+    "url": "https://github.com/khusamov/export-yclients-services-to-tilda-store"
+  },
+  "author": {
+    "url": "https://khusamov.ru",
+    "email": "khusamov@yandex.ru",
+    "name": "Khusamov Sukhrob"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
