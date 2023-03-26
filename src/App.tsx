@@ -8,6 +8,7 @@ import {downloadCsvFile} from './functions/download'
 export default function App() {
 	const [userToken, setUserToken] = useUserToken()
 	const [serverMessage, setServerMessage] = useState<string | null>(null)
+	const isAuth = userToken !== null
 
 	const onAuthFormSubmit: TAuthFormSubmit = async ({login, password}) => {
 		const body = await YclientsApi.auth(login, password)
@@ -34,10 +35,10 @@ export default function App() {
 				Скрипт для экспорта услуг из сервиса 'yclients.com' в файл импорта товаров для сервиса 'store.tilda.cc'.
 			</p>
 			<div>
-				{userToken === null ? <AuthForm onSubmit={onAuthFormSubmit}/> : <div>userToken: {userToken}</div>}
 				{serverMessage && <div className={styles.ServerMessageStyle}>{serverMessage}</div>}
-				{userToken && <div><button onClick={onLogoutButtonClick}>Отмена аутентификации</button></div>}
-				<div><button onClick={onDownloadButtonClick}>Скачать файл с услугами</button></div>
+				{isAuth ? <div>Аутентификация выполнена успешно. Получен токен: {userToken}</div> : <AuthForm onSubmit={onAuthFormSubmit}/>}
+				{isAuth && <div><button onClick={onLogoutButtonClick}>Отмена аутентификации</button></div>}
+				{isAuth && <div><button onClick={onDownloadButtonClick}>Скачать файл с услугами</button></div>}
 			</div>
 		</div>
 	)
