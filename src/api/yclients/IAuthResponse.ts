@@ -1,4 +1,4 @@
-export default interface IYclientsAuthResponse {
+export default interface IAuthResponse {
 	success: boolean
 	data: {
 		user_token: string
