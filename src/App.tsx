@@ -7,6 +7,7 @@ import {downloadCsvFile} from './functions/download'
 import Api from './api/yclients/Api'
 import Auth from './api/yclients/Auth'
 import useApi from './api/yclients/useApi'
+import CompanyComboBox from './components/CompanyComboBox'
 
 export default function App() {
 	const [api, setApi] = useApi()
@@ -50,6 +51,7 @@ export default function App() {
 				{isAuth ? <div>Аутентификация выполнена успешно.</div> : <AuthForm onSubmit={onAuthFormSubmit}/>}
 				{isAuth && <div><button onClick={onLogoutButtonClick}>Отмена аутентификации</button></div>}
 				{isAuth && <div><button onClick={onDownloadButtonClick}>Скачать файл с услугами</button></div>}
+				{isAuth && <CompanyComboBox api={api}/>}
 			</div>
 		</div>
 	)

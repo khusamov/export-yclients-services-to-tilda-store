@@ -1,15 +1,14 @@
 import Api from './Api'
 import IAuthResponse from './IAuthResponse'
+import Point from './Point'
 
 
-export default class Auth  {
-	public constructor(private api: Api) {}
-
+export default class Auth extends Point {
 	/**
 	 * @link https://developers.yclients.com/ru/#tag/Avtorizaciya
 	 * @param {string} login
 	 * @param {string} password
-	 * @returns {Promise<IYclientsAuthResponse>}
+	 * @returns {Promise<IAuthResponse>}
 	 */
 	public async post(login: string, password: string): Promise<IAuthResponse> {
 		const response = (

@@ -39,6 +39,12 @@ export default ({onSubmit = () => {}}: IAuthFormProps) => {
 				Токен партнера: <input type='text' value={bearer} onChange={onBearerChange}/>
 			</div>
 			<div>
+				Токен партнера можно получить в
+				<a href='https://yclients.com/appstore/developers'>Маркетплейсе интаграций</a>.
+				Для этого там надо зарегистрироваться, зайти в свой личный кабинет
+				и скопировать токен партнера в разделе «Настройки аккаунта».
+			</div>
+			<div>
 				<button type='submit'>
 					Войти
 				</button>
