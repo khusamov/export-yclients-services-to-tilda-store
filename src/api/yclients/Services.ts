@@ -1,7 +1,8 @@
 import Point from './Point'
 import Api from './Api'
+import IServicesResponse from './IServicesResponse'
 
-const getUrl = (companyId: number, serviceId?: number) => `company/${companyId}` + (serviceId ? `/services/${serviceId}` : '')
+const getUrl = (companyId: number, serviceId?: number) => `company/${companyId}/services` + (serviceId ? `/${serviceId}` : '')
 
 /**
  * @link https://developers.yclients.com/ru/#tag/Uslugi
@@ -13,7 +14,7 @@ export default class Services extends Point {
 	 * @param {number} serviceId ID услуги, если нужно работать с конкретной услугой.
 	 * @returns {Promise<any>}
 	 */
-	public async get(companyId: number, serviceId?: number) {
+	public async get(companyId: number, serviceId?: number): Promise<IServicesResponse> {
 		const response = (
 			await fetch(Api.getUrl(getUrl(companyId, serviceId)), {
 				method: 'get',

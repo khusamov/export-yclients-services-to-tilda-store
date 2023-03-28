@@ -6,4 +6,7 @@ export interface ICompany {
 export default interface ICompaniesResponse {
 	success: boolean
 	data: ICompany[]
+	meta?: {
+		message: string
+	}
 }
