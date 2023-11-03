@@ -1,8 +1,8 @@
 export default class Api {
 	public readonly headers: Headers
 
-	public static getUrl(path: string): string {
-		return 'https://api.yclients.com/api/v1/' + path
+	public static getUrl(path: string, query: string = ''): string {
+		return 'https://api.yclients.com/api/v1/' + path + query
 	}
 
 	public constructor(public readonly bearer: string) {
