@@ -25,7 +25,7 @@ export default function CompanyComboBox({api, onChange}: ICompanyComboBoxProps) 
 	const [companyList, setCompanyList] = useState<ICompany[]>([])
 	useEffect(() => {
 		const companies = new Companies(api)
-		companies.get().then(result => {
+		companies.get({my: true}).then(result => {
 			if (result.success && result.data.length) {
 				setCompanyList(result.data)
 				setFetchState(FetchState.Ready)
