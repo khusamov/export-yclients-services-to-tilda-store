@@ -6,6 +6,9 @@ interface IImageGroup {
 	}
 }
 
+/**
+ * @link https://developers.yclients.com/ru/#tag/Uslugi
+ */
 export interface IService {
 	id: number
 	title: string
@@ -14,6 +17,7 @@ export interface IService {
 	price_min: number
 	price_max: number
 	image_group: IImageGroup[] | IImageGroup
+	active: number
 }
 
 export default interface IServicesResponse {

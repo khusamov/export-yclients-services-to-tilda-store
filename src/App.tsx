@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {stringify} from 'csv-stringify/browser/esm/sync'
+import {IService} from './api/yclients/IServicesResponse'
 import styles from './App.module.scss'
 import AuthForm, {TAuthFormSubmit} from './components/AuthForm'
 import useUserToken from './hooks/useUserToken'
@@ -51,6 +52,18 @@ export default function App() {
 	}
 
 	const onDownloadButtonClick = async () => {
+		/**
+		 * Фильтрация услуг.
+		 * Не все услуги подлежат копированию в файл.
+		 * @param {IService} service
+		 * @returns {boolean}
+		 */
+		const serviceFilterPredicate = (service: IService) => {
+			// Оставляет только те услуги, которые доступны для онлайн записи (active=1).
+			// https://developers.yclients.com/ru/#tag/Uslugi
+			return service.active === 1
+		}
+
 		if (api) {
 			const services = new Services(api)
 			const categories = new Categories(api)
@@ -64,7 +77,7 @@ export default function App() {
 			}
 			if (resultOfServices.success && resultOfCategories.success) {
 				const exportData: IGood[] = []
-				for (const data of resultOfServices.data) {
+				for (const data of resultOfServices.data.filter(serviceFilterPredicate)) {
 					const category = resultOfCategories.data.find(category => category.id === data.category_id)
 					const imageGroup = data.image_group instanceof Array ? data.image_group[0] : data.image_group
 					exportData.push({
